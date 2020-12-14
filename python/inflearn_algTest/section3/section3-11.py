@@ -3,7 +3,7 @@
 격자판 회문수
 '''
 import sys
-#sys.stdin = open('input.txt', 'rt')
+sys.stdin = open('input.txt', 'rt')
 
 mat = [list(map(int, input().split())) for _ in range(7)]
 
