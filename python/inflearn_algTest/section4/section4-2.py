@@ -30,5 +30,4 @@ while low <= high:
     else:
         high = mid - 1  # N보다 부족하므로 답이 아님, 큰값 버려서 재탐색
 
-
 print(length)
