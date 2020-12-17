@@ -4,17 +4,19 @@
 '''
 import sys
 
-#sys.stdin = open('input.txt', 'r')
+#입력옵션#sys.stdin = open('input.txt', 'r')
 
 # N: 지원자수
 N = int(input())
 profiles = []
 for _ in range(N):
-    profiles.append(list(map(int, input().split())))
+    profiles.append(tuple(map(int, input().split())))
 
+
+
+'''
 profiles.sort()
-
-
+# brute force
 cnt = 0
 for p in profiles:
     enroll = True
@@ -25,4 +27,18 @@ for p in profiles:
 
     if enroll == True:
             cnt += 1
+print(cnt)
+'''
+
+# greedy
+
+profiles.sort(reverse=True) # 키 내림차순 정렬
+
+max_weight = 0
+cnt = 0
+for h, w in profiles:
+    if w > max_weight:
+        max_weight = w
+        cnt += 1
+
 print(cnt)
