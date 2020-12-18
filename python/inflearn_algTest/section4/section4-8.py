@@ -8,7 +8,7 @@ import sys
 #sys.stdin = open('input.txt', 'r')
 
 N, M = map(int, input().split()) # N: 승객, M: 보트당 무게 제한
-weight = list(map(int, input().split())) # 각 승객의 몸무게 리스트
+weights = list(map(int, input().split())) # 각 승객의 몸무게 리스트
 '''
 weight.sort(reverse=True)
 idx = sum_weight = cnt = 0
@@ -28,19 +28,19 @@ while True:
         break
 '''
 
-weight.sort()
+weights.sort()
 cnt = 0
-while weight:
-    if len(weight) == 1:
+while weights:
+    if len(weights) == 1:
         cnt += 1
         break
 
-    if weight[0] + weight[-1] > M:
-        weight.pop()
+    if weights[0] + weights[-1] > M:
+        weights.pop()
         cnt += 1
     else:
-        weight.pop(0)
-        weight.pop()
+        weights.pop(0)
+        weights.pop()
         cnt += 1
 
 print(cnt)
