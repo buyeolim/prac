@@ -26,7 +26,7 @@ def dfs(s):
 
 
 # 입력
-#sys.stdin = open("input.txt", "r")
+sys.stdin = open("input.txt", "r")
 N, M = map(int, input().split()) # N: 정점의 수, M: 간선의 수
 edges = []
 for _ in range(M):
