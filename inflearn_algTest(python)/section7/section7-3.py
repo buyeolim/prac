@@ -5,33 +5,28 @@
 import sys
 
 
-def dfs(lv, cur_w):
-    X[sum(c)] += 1
+def dfs(lv, w_sum):
+    global X
 
-    if lv == 3:
+    if lv == K:
+        if 0 < w_sum <= S:
+            X.add(w_sum)
         return
     else:
-        if cur_w == 0:
-            cur_w_idx = -1
-        else:
-            cur_w_idx = weights.index(cur_w)
-
-        for i in range(cur_w_idx + 1, K):
-            c.append(weights[i])
-            dfs(lv + 1, weights[i])
-            c.pop()
+        dfs(lv + 1, w_sum + weights[lv]) # 추 왼쪽
+        dfs(lv + 1, w_sum - weights[lv]) # 추 오른쪽
+        dfs(lv + 1, w_sum) # 추 사용안함
 
 ## 입력 ##
-sys.stdin = open("input.txt", "r")
+#sys.stdin = open("input.txt", "r")
 K = int(input()) # K개의 추
 weights = list(map(int, input().split())) # 추의 무게 리스트
 
 ## 수행 ##
 S = sum(weights)
-c = [] # 추의 조합
-X = [0] * (S + 1) # 그릇 무게(X의 index)와 같은 조합 수를 저정하는 리스트
+X = set() # 측정 가능한 그릇 무게 저장
 dfs(0, 0)
 
-print(X.count(0))
-a = 0
+## 출력 ##
+print(S - len(X))
 
