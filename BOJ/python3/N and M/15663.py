@@ -1,13 +1,7 @@
 '''
 N과 M (9)
-https://www.acmicpc.net/problem/15663 * 시간 초과
+https://www.acmicpc.net/problem/15663
 '''
-import sys
-import time
-start = time.time()  # 시작 시간 저장
-sys.stdin = open("input.txt", "r")
-
-
 def dfs(lv):  # lv: 트리의 레벨
     if lv == M:
         for n in p:
@@ -35,7 +29,8 @@ P = set()  # 중복되지 않는 모든 순열 집합(set 자료형)
 p = []  # 뽑아 생성한 하나의 순열
 dfs(0)
 
-print("time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
+
+
 ###
 # 시간초과 참고(https://wlstyql.tistory.com/67)
 # 중복확인 참고(https://www.acmicpc.net/board/view/35481)
