@@ -1,1 +1,1 @@
-This file is used for input data of problem solving
+코딩테스트, 알고리즘 문제 해결 등을 위한 입력 파일
