@@ -2,11 +2,6 @@
 사탕 게임
 https://www.acmicpc.net/problem/3085
 '''
-import sys
-import time
-start = time.time()  # 시작 시간 저장
-sys.stdin = open("input.txt", "r")  # input.txt 파일로 입력
-
 N = int(input())
 mat = []
 for _ in range(N):
@@ -32,62 +27,60 @@ def color_to_index(color):
         return 3
 
 
+def count_max_continuous(r, c, d):  # row, column, direction
+    global cnt_max
+
+    if d == 'r':  # 한 행에 대하여 이동
+        c = 0
+    else:  # 한 열에 대하여 이동
+        r = 0
+    reset_colors(colors_max)
+    reset_colors(colors)
+    prev_color = ''
+    for _ in range(N):
+        idx = color_to_index(mat[r][c])
+        if prev_color == '' or prev_color == mat[r][c]:
+            colors[idx] += 1
+            colors_max[idx] = max(colors[idx], colors_max[idx])
+        else:
+            colors[idx] = 1
+
+        prev_color = mat[r][c]
+        if d == 'r':
+            c += 1
+        else:
+            r += 1
+
+    cnt_max = max(cnt_max, max(colors_max))
+
+
 # 우, 하
 dr = [0, 1]
 dc = [1, 0]
 
 cnt_max = 0
 colors = [0, 0, 0, 0]  # C, P, Z, Y
+colors_max = [0, 0, 0, 0]  # max of C, P, Z, Y
 for r in range(N):
     for c in range(N):
-        # 우, 하 비교
+        # 교환 전 최대 연속 개수 파악
+        count_max_continuous(r, c, 'r')  # 행 검사
+        count_max_continuous(r, c, 'c')  # 열 검사
+
+        # 우측, 하측 원소와 교환 후 최대 연속 개수 파악
         for i in range(2):
             rr = r+dr[i]
             cc = c+dc[i]
 
-            if rr >= N or cc >= N:
+            if rr >= N or cc >= N:  # 범위 초과시 다음으로
                 continue
 
             if mat[r][c] != mat[rr][cc]:
                 mat[r][c], mat[rr][cc] = mat[rr][cc], mat[r][c]  # swap
-
-                # 행 검사
-                cnt_row = 0
-                reset_colors(colors)
-                prev_color = ""
-                for i in range(N):
-                    for j in range(N):
-                        idx = color_to_index(mat[i][j])
-                        if prev_color == "" or prev_color == mat[i][j]:
-                            colors[idx] += 1
-                        else:
-                            colors[idx] = 1
-
-                        prev_color = mat[r][n]
-
-                    cnt = max(colors)
-
-                # 열 검사
-                cnt_col = 0
-                reset_colors(colors)
-                prev_color = ""
-                for n in range(N):
-                    idx = color_to_index(mat[n][c])
-                    if prev_color == "" or prev_color == mat[n][c]:
-                        colors[idx] += 1
-                    else:
-                        if colors[idx] < 1:
-                            colors[idx] = 1
-
-                    prev_color = mat[n][c]
-
-                cnt_col = max(colors)
-
-                # 연속인 개수의 최대값
-                cnt_max = max(cnt_max, cnt_row, cnt_col)
-
+                count_max_continuous(r, c, 'r')
+                count_max_continuous(r, c, 'c')
+                count_max_continuous(rr, cc, 'r')
+                count_max_continuous(rr, cc, 'c')
                 mat[r][c], mat[rr][cc] = mat[rr][cc], mat[r][c]  # re-swap
 
 print(cnt_max)
-
-print("time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
