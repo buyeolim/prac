@@ -2,20 +2,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: Launch Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
         },
         {
-            "name": "Node.js: Launch Program",
+            "name": "Node.js: Launch Current File",
             "program": "${file}",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "type": "pwa-node"
-        }
+        },
+        {
+            "type": "java",
+            "name": "Java: Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
     ]
 }
