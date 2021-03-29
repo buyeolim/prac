@@ -7,6 +7,7 @@ const input = fs.readFileSync("input.txt").toString().split("\n");
 //const input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
 /* code */
+console.log("Hello!");
 
 const end = new Date().getTime();
 console.log("--------------------");
