@@ -2,7 +2,6 @@
 부재중 전화
 https://www.acmicpc.net/problem/1333
  */
-const start = new Date().getTime();
 const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
