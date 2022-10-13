@@ -2,6 +2,7 @@
 제목
 '''
 import sys
+
 import time
 start = time.time()  # 시작 시간
 sys.stdin = open("input.txt", "r")  # input.txt 파일로 입력
