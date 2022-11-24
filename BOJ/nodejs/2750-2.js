@@ -14,6 +14,7 @@ for (let n = 0; n < N; n++) {
   nums.push(1 * input[1 + n]);
 }
 
+// 버블 정렬
 for (let i = 0; i < N - 1; i++) {
   for (let j = 0; j < N - i - 1; j++) {
     if (nums[j] > nums[j + 1]) {

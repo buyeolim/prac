@@ -14,13 +14,15 @@ for (let n = 0; n < N; n++) {
   nums.push(1 * input[1 + n]);
 }
 
-// 선택 정렬
+// 삽입 정렬
 for (let i = 0; i < N; i++) {
-  let idx = i;
-  for (let j = i + 1; j < N; j++) {
-    if (nums[j] < nums[idx]) idx = j;
+  let tmp = nums[i];
+  let j;
+  for (j = i - 1; j >= 0; j--) {
+    if (nums[j] > tmp) nums[j + 1] = nums[j];
+    else break;
   }
-  [nums[i], nums[idx]] = [nums[idx], nums[i]];
+  nums[j + 1] = tmp;
 }
 
 console.log(nums.join("\n"));
