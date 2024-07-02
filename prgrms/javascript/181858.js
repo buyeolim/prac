@@ -16,6 +16,6 @@ function solution(arr, k) {
 }
 
 const input = [[0, 1, 1, 2, 2, 3], 3];
-const input = [[0, 1, 1, 1, 1], 4];
+// const input = [[0, 1, 1, 1, 1], 4];
 
 console.log(solution(...input));
